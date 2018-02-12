@@ -35,3 +35,18 @@ def download_progress_hook(count, blockSize, totalSize):
       sys.stdout.flush()
 
     last_percent_reported = percent
+
+def maybe_download(filename, expected_bytes, force=False):
+  """Download a file if not present, and make sure it's the right size."""
+  dest_filename = os.path.join(data_root, filename)
+  if force or not os.path.exists(dest_filename):
+    print('Attempting to download:', filename)
+    filename, _ = urlretrieve(url + filename, dest_filename, reporthook=download_progress_hook)
+    print('\nDownload Complete!')
+  statinfo = os.stat(dest_filename)
+  if statinfo.st_size == expected_bytes:
+    print('Found and verified', dest_filename)
+  else:
+    raise Exception(
+      'Failed to verify ' + dest_filename + '. Can you get to it with a browser?')
+  return dest_filename
