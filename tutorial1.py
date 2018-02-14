@@ -56,3 +56,4 @@ test_filename = maybe_download('notMNIST_small.tar.gz', 8458043)
 
 
 num_classes = 10
+np.random.seed(133)
