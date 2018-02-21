@@ -78,3 +78,11 @@ def maybe_extract(filename, force=False):
         num_classes, len(data_folders)))
   print(data_folders)
   return data_folders
+
+train_folders = maybe_extract(train_filename)
+test_folders = maybe_extract(test_filename)
+
+
+
+image_size = 28  # Pixel width and height.
+pixel_depth = 255.0  # Number of levels per pixel.
