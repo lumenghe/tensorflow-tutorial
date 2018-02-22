@@ -115,3 +115,22 @@ def load_letter(folder, min_num_images):
   print('Mean:', np.mean(dataset))
   print('Standard deviation:', np.std(dataset))
   return dataset
+
+def maybe_pickle(data_folders, min_num_images_per_class, force=False):
+  dataset_names = []
+  for folder in data_folders:
+    set_filename = folder + '.pickle'
+    dataset_names.append(set_filename)
+    if os.path.exists(set_filename) and not force:
+      # You may override by setting force=True.
+      print('%s already present - Skipping pickling.' % set_filename)
+    else:
+      print('Pickling %s.' % set_filename)
+      dataset = load_letter(folder, min_num_images_per_class)
+      try:
+        with open(set_filename, 'wb') as f:
+          pickle.dump(dataset, f, pickle.HIGHEST_PROTOCOL)
+      except Exception as e:
+        print('Unable to save data to', set_filename, ':', e)
+
+  return dataset_names
