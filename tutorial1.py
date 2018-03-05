@@ -183,3 +183,11 @@ def merge_datasets(pickle_files, train_size, valid_size=0):
 
   return valid_dataset, valid_labels, train_dataset, train_labels
 
+
+train_size = 200000
+valid_size = 10000
+test_size = 10000
+
+valid_dataset, valid_labels, train_dataset, train_labels = merge_datasets(
+  train_datasets, train_size, valid_size)
+_, _, test_dataset, test_labels = merge_datasets(test_datasets, test_size)
