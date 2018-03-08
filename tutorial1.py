@@ -196,3 +196,7 @@ print('Training:', train_dataset.shape, train_labels.shape)
 print('Validation:', valid_dataset.shape, valid_labels.shape)
 print('Testing:', test_dataset.shape, test_labels.shape)
 
+
+from collections import Counter
+Counter(train_labels), Counter(test_labels)
+
