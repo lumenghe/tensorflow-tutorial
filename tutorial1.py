@@ -200,3 +200,9 @@ print('Testing:', test_dataset.shape, test_labels.shape)
 from collections import Counter
 Counter(train_labels), Counter(test_labels)
 
+
+def randomize(dataset, labels):
+  permutation = np.random.permutation(labels.shape[0])
+  shuffled_dataset = dataset[permutation,:,:]
+  shuffled_labels = labels[permutation]
+  return shuffled_dataset, shuffled_labels
