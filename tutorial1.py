@@ -210,3 +210,9 @@ train_dataset, train_labels = randomize(train_dataset, train_labels)
 test_dataset, test_labels = randomize(test_dataset, test_labels)
 valid_dataset, valid_labels = randomize(valid_dataset, valid_labels)
 
+
+Counter(train_labels), Counter(test_labels)
+
+plt.hist(train_labels, bins=10)
+plt.hist(test_labels, bins=10)
+
