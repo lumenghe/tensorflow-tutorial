@@ -216,3 +216,5 @@ Counter(train_labels), Counter(test_labels)
 plt.hist(train_labels, bins=10)
 plt.hist(test_labels, bins=10)
 
+
+pickle_file = 'notMNIST.pickle'
