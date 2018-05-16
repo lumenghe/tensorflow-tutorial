@@ -261,3 +261,10 @@ test_dataset_clean = test_dataset[test_keep]
 test_labels_clean  = test_labels [test_keep]
 
 t2 = time.time()
+
+print("Time: %0.2fs" % (t2 - t1))
+print("valid -> train overlap: %d samples" % valid_in_train.sum())
+print("test  -> train overlap: %d samples" % test_in_train.sum())
+print("test  -> valid overlap: %d samples" % test_in_valid.sum())
+
+
