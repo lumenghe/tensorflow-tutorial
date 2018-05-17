@@ -40,3 +40,6 @@ print('Test set', test_dataset.shape, test_labels.shape)
 
 # With gradient descent training, even this much data is prohibitive.
 # Subset the training data for faster turnaround.
+train_subset = 10000
+
+graph = tf.Graph()
