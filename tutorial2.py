@@ -82,3 +82,5 @@ with graph.as_default():
     tf.matmul(tf_valid_dataset, weights) + biases)
   test_prediction = tf.nn.softmax(tf.matmul(tf_test_dataset, weights) + biases)
 
+
+num_steps = 801
