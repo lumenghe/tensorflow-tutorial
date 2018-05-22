@@ -111,3 +111,7 @@ with tf.Session(graph=graph) as session:
         valid_prediction.eval(), valid_labels))
   print('Test accuracy: %.1f%%' % accuracy(test_prediction.eval(), test_labels))
 
+
+batch_size = 128
+
+graph = tf.Graph()
