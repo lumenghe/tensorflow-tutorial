@@ -23,3 +23,6 @@ with open(pickle_file, 'rb') as f:
   print('Validation set', valid_dataset.shape, valid_labels.shape)
   print('Test set', test_dataset.shape, test_labels.shape)
 
+
+image_size = 28
+num_labels = 10
