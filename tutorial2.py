@@ -176,3 +176,24 @@ batch_size=128
 n_hidden_nodes=1024
 
 grap = tf.Graph()
+with graph.as_default():
+    tf_train_dataset = tf.placeholder(tf.float32, shape=(batch_size, image_size*image_size))
+    tf_train_labels = tf.placeholder(tf.float32, shape=(batch_size, num_labels))
+    tf_valid_dataset = tf.constant(valid_dataset)
+    tf_test_dataset = tf.constant(test_dataset)
+
+    weight_1 = tf.Variable(tf.truncated_normal([image_size*image_size, n_hidden_nodes]))
+    biases_1 = tf.Variable(tf.zeros([n_hidden_nodes]))
+    weight_2 = tf.Variable(tf.truncated_normal([n_hidden_nodes, num_labels]))
+    biases_2 = tf.Variable(tf.zeros([num_labels]))
+
+    logits_1 = tf.matmul(tf_train_dataset, weight_1) + biases_1
+    h1 = tf.nn.relu(logits_1)
+    logits_2 = tf.matmul(h1, weight_2) + biases_2
+    loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=tf_train_labels, logits=logits_2))
+
+    optimizer = tf.train.GradientDescentOptimizer(0.5).minimize(loss)
+
+    train_prediction = tf.nn.softmax(logits_2)
+    valid_prediction = tf.nn.softmax(tf.matmul(tf.nn.relu( tf.matmul(tf_valid_dataset, weight_1) + biases_1), weight_2) + biases_2)
+    test_prediction = tf.nn.softmax(tf.matmul(tf.nn.relu( tf.matmul(tf_test_dataset, weight_1) + biases_1), weight_2) + biases_2)
