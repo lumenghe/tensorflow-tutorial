@@ -197,3 +197,5 @@ with graph.as_default():
     train_prediction = tf.nn.softmax(logits_2)
     valid_prediction = tf.nn.softmax(tf.matmul(tf.nn.relu( tf.matmul(tf_valid_dataset, weight_1) + biases_1), weight_2) + biases_2)
     test_prediction = tf.nn.softmax(tf.matmul(tf.nn.relu( tf.matmul(tf_test_dataset, weight_1) + biases_1), weight_2) + biases_2)
+
+num_steps = 3001
