@@ -27,3 +27,9 @@ image_size = 28
 num_labels = 10
 num_channels = 1 # grayscale
 
+
+def reformat(dataset, labels):
+  dataset = dataset.reshape(
+    (-1, image_size, image_size, num_channels)).astype(np.float32)
+  labels = (np.arange(num_labels) == labels[:,None]).astype(np.float32)
+  return dataset, labels
