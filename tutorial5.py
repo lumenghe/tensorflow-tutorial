@@ -31,3 +31,5 @@ def maybe_download(filename, expected_bytes):
     raise Exception(
       'Failed to verify ' + filename + '. Can you get to it with a browser?')
   return filename
+
+filename = maybe_download('text8.zip', 31344016)
