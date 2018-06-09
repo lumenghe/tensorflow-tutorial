@@ -277,3 +277,9 @@ score = metrics.accuracy_score(test_labels, predicts)
 print("sklearn Random Forest accuracy score: {}".format(round(score * 100, 2)))
 
 """
+beta = 0.1
+n_hidden_nodes_1 = 2048
+n_hidden_nodes_2 = 1024
+n_hidden_nodes_2 = 512
+batch_size = 128
+graph = tf.Graph()
