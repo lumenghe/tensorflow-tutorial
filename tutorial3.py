@@ -265,3 +265,15 @@ with tf.Session(graph=graph) as session:
             feed_dict = {tf_dataset : test_dataset}
             predictions = session.run([prediction], feed_dict=feed_dict)
             print('Test accuracy: {0:.01f}%'.format( accuracy(np.array(predictions[0]), test_labels)) )
+"""
+#Problem 4
+"""
+
+    # sklearn random forest model
+random_forest = RandomForestClassifier(n_estimators=10)
+random_forest.fit(train_dataset, train_labels)
+predicts = random_forest.predict(test_dataset)
+score = metrics.accuracy_score(test_labels, predicts)
+print("sklearn Random Forest accuracy score: {}".format(round(score * 100, 2)))
+
+"""
