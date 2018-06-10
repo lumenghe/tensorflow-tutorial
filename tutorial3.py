@@ -283,3 +283,30 @@ n_hidden_nodes_2 = 1024
 n_hidden_nodes_2 = 512
 batch_size = 128
 graph = tf.Graph()
+with graph.as_default():
+    tf_dataset = tf.placeholder(tf.float32, shape=(None, image_size*image_size))
+    tf_labels = tf.placeholder(tf.float32, shape=(None, num_labels))
+    drop_ratio = tf.placeholder(tf.float32)
+    is_training = tf.placeholder(tf.bool)
+
+    xavier = tf.contrib.layers.xavier_initializer(uniform=True, seed=None, dtype=tf.float32)
+    hidden_layer_1_dense = tf.layers.dense(tf_dataset, n_hidden_nodes_1, activation=tf.nn.elu,  kernel_initializer=xavier)
+
+    hidden_layer_1 = tf.layers.dropout(hidden_layer_1_dense, rate=drop_ratio, training=is_training)
+    hidden_layer_2_dense = tf.layers.dense(hidden_layer_1, n_hidden_nodes_2, activation=tf.nn.elu,  kernel_initializer=xavier)
+
+    hidden_layer_2 = tf.layers.dropout(hidden_layer_2_dense, rate=drop_ratio, training=is_training)
+
+    hidden_layer_3_dense = tf.layers.dense(hidden_layer_2, n_hidden_nodes_3, activation=tf.nn.elu,  kernel_initializer=xavier)
+
+    hidden_layer_3 = tf.layers.dropout(hidden_layer_3_dense, rate=drop_ratio, training=is_training)
+
+    logits = tf.layers.dense(hidden_layer_3, num_labels, activation=None,  kernel_initializer=xavier)
+
+    loss = tf.losses.softmax_cross_entropy(tf_labels, logits)
+
+  #  regularization = tf.nn.l2_loss(hidden_weights) + tf.nn.l2_loss(hidden_weights)
+  #  loss += beta * regularization
+    optimizer = tf.train.AdamOptimizer().minimize(loss)
+    prediction = tf.nn.softmax( logits )
+
