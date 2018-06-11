@@ -310,3 +310,5 @@ with graph.as_default():
     optimizer = tf.train.AdamOptimizer().minimize(loss)
     prediction = tf.nn.softmax( logits )
 
+
+num_steps = 6001
