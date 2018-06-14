@@ -312,3 +312,29 @@ with graph.as_default():
 
 
 num_steps = 6001
+
+with tf.Session(graph=graph) as session:
+    tf.global_variables_initializer().run()
+    print("Problem 3 Initialized")
+    for step in range(num_steps):
+        offset = (step * batch_size) % (train_labels.shape[0] - batch_size)
+        batch_data = train_dataset[offset:(offset + batch_size), :]
+        batch_labels = train_labels[offset:(offset + batch_size), :]
+        feed_dict = {tf_dataset: batch_data, tf_labels: batch_labels, drop_ratio: 0.5, is_training: True}
+        _, l = session.run([optimizer, loss], feed_dict=feed_dict)
+
+
+        if (step % 500 == 0):
+            feed_dict = {tf_dataset : train_dataset, drop_ratio: 1, is_training: False}
+            predictions = session.run([prediction], feed_dict=feed_dict)
+            print('Training accuracy: {0:.1f}%'.format(accuracy(np.array(predictions[0]), train_labels)))
+
+            feed_dict = {tf_dataset : valid_dataset, drop_ratio: 1, is_training: False}
+            predictions = session.run([prediction], feed_dict=feed_dict)
+            print('Validation accuracy: {0:.1f}%'.format(accuracy(np.array(predictions[0]), valid_labels)))
+
+            feed_dict = {tf_dataset : test_dataset, drop_ratio: 1, is_training: False}
+            predictions = session.run([prediction], feed_dict=feed_dict)
+            print('Test accuracy: {0:.01f}%'.format( accuracy(np.array(predictions[0]), test_labels)) )
+
+
