@@ -39,3 +39,5 @@ def read_data(filename):
   with zipfile.ZipFile(filename) as f:
     data = tf.compat.as_str(f.read(f.namelist()[0])).split()
   return data
+
+words = read_data(filename)
