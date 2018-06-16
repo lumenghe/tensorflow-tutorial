@@ -33,3 +33,6 @@ def reformat(dataset, labels):
     (-1, image_size, image_size, num_channels)).astype(np.float32)
   labels = (np.arange(num_labels) == labels[:,None]).astype(np.float32)
   return dataset, labels
+train_dataset, train_labels = reformat(train_dataset, train_labels)
+valid_dataset, valid_labels = reformat(valid_dataset, valid_labels)
+test_dataset, test_labels = reformat(test_dataset, test_labels)
