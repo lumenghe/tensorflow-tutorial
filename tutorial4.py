@@ -46,3 +46,11 @@ def accuracy(predictions, labels):
   return (100.0 * np.sum(np.argmax(predictions, 1) == np.argmax(labels, 1))
           / predictions.shape[0])
 
+
+batch_size = 32
+patch_size = 5
+depth = 16
+num_hidden_1 = 256
+num_hidden_2 = 128
+
+graph = tf.Graph()
