@@ -107,3 +107,6 @@ with graph.as_default():
     prediction = tf.nn.softmax( logits )
 
 
+
+num_steps = 20001
+learning_schedule = {0: 0.001, 10000: 0.0005, 15000: 0.0001}
