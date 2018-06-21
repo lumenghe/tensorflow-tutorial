@@ -41,3 +41,5 @@ def read_data(filename):
   return data
 
 words = read_data(filename)
+print('Data size %d' % len(words))
+
