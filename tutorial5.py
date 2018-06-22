@@ -43,3 +43,5 @@ def read_data(filename):
 words = read_data(filename)
 print('Data size %d' % len(words))
 
+
+vocabulary_size = 50000
