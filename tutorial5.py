@@ -66,3 +66,9 @@ def build_dataset(words):
   return data, count, dictionary, reverse_dictionary
 
 data, count, dictionary, reverse_dictionary = build_dataset(words)
+print('Most common words (+UNK)', count[:5])
+print('Sample data', data[:10])
+del words  # Hint to reduce memory.
+
+
+
