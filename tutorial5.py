@@ -64,3 +64,5 @@ def build_dataset(words):
   count[0][1] = unk_count
   reverse_dictionary = dict(zip(dictionary.values(), dictionary.keys()))
   return data, count, dictionary, reverse_dictionary
+
+data, count, dictionary, reverse_dictionary = build_dataset(words)
