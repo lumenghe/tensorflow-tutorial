@@ -72,3 +72,5 @@ del words  # Hint to reduce memory.
 
 
 
+
+data_index = 0
