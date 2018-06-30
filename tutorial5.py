@@ -98,3 +98,14 @@ def generate_batch(batch_size, num_skips, skip_window):
     buffer.append(data[data_index])
     data_index = (data_index + 1) % len(data)
   return batch, labels
+
+print('data:', [reverse_dictionary[di] for di in data[:8]])
+
+for num_skips, skip_window in [(2, 1), (4, 2)]:
+    data_index = 0
+    batch, labels = generate_batch(batch_size=8, num_skips=num_skips, skip_window=skip_window)
+    print('\nwith num_skips = %d and skip_window = %d:' % (num_skips, skip_window))
+    print('    batch:', [reverse_dictionary[bi] for bi in batch])
+    print('    labels:', [reverse_dictionary[li] for li in labels.reshape(8)])
+
+
