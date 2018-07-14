@@ -165,3 +165,5 @@ with graph.as_default(), tf.device('/cpu:0'):
 
 
 
+
+num_steps = 100001
