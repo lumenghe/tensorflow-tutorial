@@ -213,3 +213,5 @@ def plot(embeddings, labels):
     pylab.annotate(label, xy=(x, y), xytext=(5, 2), textcoords='offset points',
                    ha='right', va='bottom')
   pylab.show()
+
+words = [reverse_dictionary[i] for i in range(1, num_points+1)]
