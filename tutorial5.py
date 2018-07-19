@@ -215,3 +215,5 @@ def plot(embeddings, labels):
   pylab.show()
 
 words = [reverse_dictionary[i] for i in range(1, num_points+1)]
+writer = tf.summary.FileWriter('/tmp/tensorflow/mnist/logs/mnist_with_summaries', session.graph)
+#plot(two_d_embeddings, words)
